@@ -1,4 +1,13 @@
+import { CoinData } from "@/types/market.type"
 import { create } from "zustand"
+
+const tradingPairs = [
+  { symbol: "BTC/USDT", name: "Bitcoin", id: "bitcoin", binanceSymbol: "BTCUSDT" },
+  { symbol: "ETH/USDT", name: "Ethereum", id: "ethereum", binanceSymbol: "ETHUSDT" },
+  { symbol: "SOL/USDT", name: "Solana", id: "solana", binanceSymbol: "SOLUSDT" },
+  { symbol: "XRP/USDT", name: "Ripple", id: "ripple", binanceSymbol: "XRPUSDT" },
+  { symbol: "DOGE/USDT", name: "Dogecoin", id: "dogecoin", binanceSymbol: "DOGEUSDT" },
+]
 
 export interface OrderBookEntry {
   price: number
@@ -21,20 +30,11 @@ export interface Position {
   tpsl?: string
 }
 
-export interface MarketData {
-  symbol: string
-  price: number
-  change24h: number
-  changePercent24h: number
-  high24h: number
-  low24h: number
-  volumeBtc24h: number
-  volumeUsdt24h: number
-}
-
 interface TradingState {
+  // Available trading pairs
+  tradingPairs: typeof tradingPairs
   // Market data
-  marketData: MarketData
+  coinsData: CoinData[]
   selectedPair: string
 
   // Order book
@@ -64,19 +64,12 @@ interface TradingState {
   setPrice: (price: string) => void
   setAmount: (amount: string) => void
   setPercentageAmount: (percentage: number) => void
+  setCoinsData: (coinsData: CoinData[]) => void
 }
 
 export const useTradingStore = create<TradingState>((set) => ({
-  marketData: {
-    symbol: "BTC/USDT",
-    price: 95322.53,
-    change24h: 232.45,
-    changePercent24h: 0.32,
-    high24h: 95892.23,
-    low24h: 94994.32,
-    volumeBtc24h: 72.3865,
-    volumeUsdt24h: 873.9,
-  },
+  coinsData: [],
+  tradingPairs: tradingPairs,
   selectedPair: "BTC/USDT",
 
   asks: [
@@ -131,4 +124,5 @@ export const useTradingStore = create<TradingState>((set) => ({
   setPrice: (price) => set({ price }),
   setAmount: (amount) => set({ amount }),
   setPercentageAmount: (percentage) => set({ percentageAmount: percentage }),
+  setCoinsData: (coinsData) => set({ coinsData }),
 }))

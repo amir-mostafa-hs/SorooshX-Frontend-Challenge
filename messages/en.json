@@ -15,6 +15,9 @@
     "low24h": "24h Low",
     "volumeBtc": "24h Volume(BTC)",
     "volumeUsdt": "24h Volume(USDT)",
+    "volume": "24h Volume",
+    "marketCap": "Market Cap",
+    "loading": "Loading...",
     "fundingSettlement": "Funding / Settlement"
   },
   "orderBook": {

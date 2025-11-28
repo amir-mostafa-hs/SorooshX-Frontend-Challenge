@@ -15,6 +15,9 @@
     "low24h": "کمترین ۲۴ساعته",
     "volumeBtc": "حجم ۲۴ساعته (BTC)",
     "volumeUsdt": "حجم ۲۴ساعته (USDT)",
+    "volume": "حجم ۲۴ساعته",
+    "marketCap": "ارزش بازار",
+    "loading": "در حال بارگذاری...",
     "fundingSettlement": "فاندینگ / تسویه"
   },
   "orderBook": {

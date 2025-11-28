@@ -2,11 +2,14 @@
 
 import { Card } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import useSelectCoin from "@/lib/hooks/useSelectCoin"
+import { formatPrice } from "@/lib/utils"
 import { useTradingStore } from "@/store/trading-store"
 import { useTranslations } from "next-intl"
 
 export function OrderBook() {
-  const { asks, bids, marketData } = useTradingStore()
+  const { asks, bids } = useTradingStore()
+  const selectedCoin = useSelectCoin().selectedCoin
   const t = useTranslations("orderBook")
 
   // Calculate max total for depth visualization
@@ -74,7 +77,7 @@ export function OrderBook() {
 
           {/* Current Price */}
           <div className="py-2 text-center border-y border-border my-1">
-            <span className="text-xl font-bold text-foreground">{marketData.price.toLocaleString()}</span>
+            <span className="text-xl font-bold text-foreground">${formatPrice(selectedCoin?.current_price)}</span>
           </div>
 
           {/* Bids (Buys) */}
