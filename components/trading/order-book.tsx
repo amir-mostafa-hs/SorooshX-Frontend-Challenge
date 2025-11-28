@@ -3,9 +3,11 @@
 import { Card } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useTradingStore } from "@/store/trading-store"
+import { useTranslations } from "next-intl"
 
 export function OrderBook() {
   const { asks, bids, marketData } = useTradingStore()
+  const t = useTranslations("orderBook")
 
   // Calculate max total for depth visualization
   const maxTotal = Math.max(...asks.map((a) => a.total), ...bids.map((b) => b.total))
@@ -18,13 +20,13 @@ export function OrderBook() {
             value="orderbook"
             className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent px-4 py-2 text-sm"
           >
-            Order book
+            {t("title")}
           </TabsTrigger>
           <TabsTrigger
             value="trades"
             className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent px-4 py-2 text-sm"
           >
-            Trade history
+            {t("tradeHistory")}
           </TabsTrigger>
         </TabsList>
 
@@ -43,14 +45,14 @@ export function OrderBook() {
               <div className="w-3 h-3 bg-trading-green rounded-sm" />
               <div className="w-3 h-3 bg-trading-green rounded-sm opacity-60" />
             </button>
-            <span className="ml-auto text-xs text-muted-foreground">0.01 ▾</span>
+            <span className="ms-auto text-xs text-muted-foreground">0.01 ▾</span>
           </div>
 
           {/* Column Headers */}
           <div className="grid grid-cols-3 gap-2 text-xs text-muted-foreground px-1 py-1">
-            <span>Price</span>
-            <span className="text-right">Amount(BTC)</span>
-            <span className="text-right">Total (BTC)</span>
+            <span>{t("price")}</span>
+            <span className="text-end">{t("amountBtc")}</span>
+            <span className="text-end">{t("totalBtc")}</span>
           </div>
 
           {/* Asks (Sells) */}
@@ -59,12 +61,12 @@ export function OrderBook() {
               {asks.map((ask, i) => (
                 <div key={i} className="grid grid-cols-3 gap-2 text-xs px-1 py-0.5 relative">
                   <div
-                    className="absolute inset-y-0 right-0 bg-trading-red/20"
+                    className="absolute inset-y-0 end-0 bg-trading-red/20"
                     style={{ width: `${(ask.total / maxTotal) * 100}%` }}
                   />
                   <span className="text-trading-red relative z-10">{ask.price.toFixed(1)}</span>
-                  <span className="text-right text-foreground relative z-10">{ask.amount.toFixed(2)}</span>
-                  <span className="text-right text-foreground relative z-10">{ask.total.toFixed(2)}</span>
+                  <span className="text-end text-foreground relative z-10">{ask.amount.toFixed(2)}</span>
+                  <span className="text-end text-foreground relative z-10">{ask.total.toFixed(2)}</span>
                 </div>
               ))}
             </div>
@@ -81,12 +83,12 @@ export function OrderBook() {
               {bids.map((bid, i) => (
                 <div key={i} className="grid grid-cols-3 gap-2 text-xs px-1 py-0.5 relative">
                   <div
-                    className="absolute inset-y-0 right-0 bg-trading-green/20"
+                    className="absolute inset-y-0 end-0 bg-trading-green/20"
                     style={{ width: `${(bid.total / maxTotal) * 100}%` }}
                   />
                   <span className="text-trading-green relative z-10">{bid.price.toFixed(1)}</span>
-                  <span className="text-right text-foreground relative z-10">{bid.amount.toFixed(2)}</span>
-                  <span className="text-right text-foreground relative z-10">{bid.total.toFixed(2)}</span>
+                  <span className="text-end text-foreground relative z-10">{bid.amount.toFixed(2)}</span>
+                  <span className="text-end text-foreground relative z-10">{bid.total.toFixed(2)}</span>
                 </div>
               ))}
             </div>
@@ -103,7 +105,7 @@ export function OrderBook() {
         </TabsContent>
 
         <TabsContent value="trades" className="flex-1 p-2">
-          <div className="text-center text-muted-foreground text-sm py-8">Trade history will appear here</div>
+          <div className="text-center text-muted-foreground text-sm py-8">{t("tradeHistoryPlaceholder")}</div>
         </TabsContent>
       </Tabs>
     </Card>

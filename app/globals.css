@@ -138,6 +138,35 @@
   }
 }
 
+/* RTL-specific utility classes */
+[dir="rtl"] .rtl\:space-x-reverse > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 1;
+}
+
+[dir="rtl"] .flex-row {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .text-left {
+  text-align: right;
+}
+
+[dir="rtl"] .text-right {
+  text-align: left;
+}
+
+/* RTL grid adjustments for order book */
+[dir="rtl"] .order-book-row {
+  direction: rtl;
+}
+
+/* RTL depth bars */
+[dir="rtl"] .depth-bar-ask,
+[dir="rtl"] .depth-bar-bid {
+  right: auto;
+  left: 0;
+}
+
 /* Custom scrollbar for dark theme */
 ::-webkit-scrollbar {
   width: 6px;

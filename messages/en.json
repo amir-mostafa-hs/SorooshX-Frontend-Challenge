@@ -1,0 +1,79 @@
+{
+  "common": {
+    "account": "Account",
+    "home": "Home",
+    "trade": "Trade",
+    "ideas": "Ideas",
+    "support": "Support",
+    "downloads": "Downloads",
+    "more": "More"
+  },
+  "market": {
+    "perp": "Perp",
+    "change24h": "24h Change",
+    "high24h": "24h High",
+    "low24h": "24h Low",
+    "volumeBtc": "24h Volume(BTC)",
+    "volumeUsdt": "24h Volume(USDT)",
+    "fundingSettlement": "Funding / Settlement"
+  },
+  "orderBook": {
+    "title": "Order book",
+    "tradeHistory": "Trade history",
+    "price": "Price",
+    "amountBtc": "Amount(BTC)",
+    "totalBtc": "Total (BTC)",
+    "tradeHistoryPlaceholder": "Trade history will appear here"
+  },
+  "orderForm": {
+    "cross": "Cross",
+    "isolated": "Isolated",
+    "limit": "Limit",
+    "market": "Market",
+    "price": "Price",
+    "margin": "Margin",
+    "amount": "Amount",
+    "estLiqPrice": "Est. Liq Price",
+    "tpsl": "TP/SL",
+    "available": "Available",
+    "maxOpen": "Max Open",
+    "buyLong": "Buy/long",
+    "sellShort": "Sell/short",
+    "availableFunds": "Available Funds",
+    "deposit": "Deposit",
+    "transfer": "Transfer"
+  },
+  "chart": {
+    "time": "Time"
+  },
+  "positions": {
+    "tpsl": "TP/SL",
+    "cross": "Cross",
+    "isolated": "Isolated",
+    "positions": "Positions",
+    "orders": "Orders",
+    "balances": "Balances",
+    "history": "History",
+    "cancelAll": "Cancel all",
+    "hideOtherPairs": "Hide other pairs",
+    "pair": "Pair",
+    "positionsBtc": "Positions(BTC)",
+    "marginUsdt": "Margin(USDT)",
+    "entryPrice": "Entry Price(USDT)",
+    "markPrice": "Mark Price",
+    "mmr": "MMR",
+    "unrealizedPnl": "Unrealized PNL",
+    "actions": "Actions",
+    "long": "Long",
+    "short": "Short",
+    "reverse": "Reverse",
+    "close": "Close",
+    "noOpenOrders": "No open orders",
+    "balancePlaceholder": "Balance information will appear here",
+    "historyPlaceholder": "Trade history will appear here"
+  },
+  "language": {
+    "en": "English",
+    "fa": "فارسی"
+  }
+}

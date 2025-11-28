@@ -1,0 +1,79 @@
+{
+  "common": {
+    "account": "حساب کاربری",
+    "home": "خانه",
+    "trade": "معامله",
+    "ideas": "ایده‌ها",
+    "support": "پشتیبانی",
+    "downloads": "دانلودها",
+    "more": "بیشتر"
+  },
+  "market": {
+    "perp": "آتی",
+    "change24h": "تغییر ۲۴ساعته",
+    "high24h": "بیشترین ۲۴ساعته",
+    "low24h": "کمترین ۲۴ساعته",
+    "volumeBtc": "حجم ۲۴ساعته (BTC)",
+    "volumeUsdt": "حجم ۲۴ساعته (USDT)",
+    "fundingSettlement": "فاندینگ / تسویه"
+  },
+  "orderBook": {
+    "title": "دفتر سفارشات",
+    "tradeHistory": "تاریخچه معاملات",
+    "price": "قیمت",
+    "amountBtc": "مقدار (BTC)",
+    "totalBtc": "کل (BTC)",
+    "tradeHistoryPlaceholder": "تاریخچه معاملات اینجا نمایش داده می‌شود"
+  },
+  "orderForm": {
+    "cross": "کراس",
+    "isolated": "ایزوله",
+    "limit": "محدود",
+    "market": "بازار",
+    "price": "قیمت",
+    "margin": "مارجین",
+    "amount": "مقدار",
+    "estLiqPrice": "قیمت لیکوئید تخمینی",
+    "tpsl": "حد سود/ضرر",
+    "available": "موجودی",
+    "maxOpen": "حداکثر باز",
+    "buyLong": "خرید/لانگ",
+    "sellShort": "فروش/شورت",
+    "availableFunds": "موجودی قابل استفاده",
+    "deposit": "واریز",
+    "transfer": "انتقال"
+  },
+  "chart": {
+    "time": "زمان"
+  },
+  "positions": {
+    "tpsl": "حد سود/ضرر",
+    "cross": "کراس",
+    "isolated": "ایزوله",
+    "positions": "پوزیشن‌ها",
+    "orders": "سفارشات",
+    "balances": "موجودی",
+    "history": "تاریخچه",
+    "cancelAll": "لغو همه",
+    "hideOtherPairs": "مخفی کردن جفت‌های دیگر",
+    "pair": "جفت",
+    "positionsBtc": "پوزیشن‌ها (BTC)",
+    "marginUsdt": "مارجین (USDT)",
+    "entryPrice": "قیمت ورود (USDT)",
+    "markPrice": "قیمت مارک",
+    "mmr": "نرخ مارجین",
+    "unrealizedPnl": "سود/زیان محقق نشده",
+    "actions": "عملیات",
+    "long": "لانگ",
+    "short": "شورت",
+    "reverse": "معکوس",
+    "close": "بستن",
+    "noOpenOrders": "سفارش باز وجود ندارد",
+    "balancePlaceholder": "اطلاعات موجودی اینجا نمایش داده می‌شود",
+    "historyPlaceholder": "تاریخچه معاملات اینجا نمایش داده می‌شود"
+  },
+  "language": {
+    "en": "English",
+    "fa": "فارسی"
+  }
+}

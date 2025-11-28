@@ -3,10 +3,13 @@
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ChevronDown } from "lucide-react"
-
-const timeIntervals = ["Time", "1m", "3m", "5m", "1H", "4H", "1D", "1W"]
+import { useTranslations } from "next-intl"
 
 export function ChartPanel() {
+  const t = useTranslations("chart")
+
+  const timeIntervals = [t("time"), "1m", "3m", "5m", "1H", "4H", "1D", "1W"]
+
   return (
     <Card className="flex flex-col h-full bg-card border-border">
       {/* Chart Toolbar */}
