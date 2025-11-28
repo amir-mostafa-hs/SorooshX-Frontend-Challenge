@@ -9,10 +9,9 @@ const tradingPairs = [
   { symbol: "DOGE/USDT", name: "Dogecoin", id: "dogecoin", binanceSymbol: "DOGEUSDT" },
 ]
 
-export interface OrderBookEntry {
-  price: number
-  amount: number
-  total: number
+export interface OrdersBookEntry {
+  bids: [string | number, string | number][]
+  asks: [string | number, string | number][]
 }
 
 export interface Position {
@@ -33,13 +32,13 @@ export interface Position {
 interface TradingState {
   // Available trading pairs
   tradingPairs: typeof tradingPairs
+
   // Market data
   coinsData: CoinData[]
   selectedPair: string
 
   // Order book
-  asks: OrderBookEntry[]
-  bids: OrderBookEntry[]
+  ordersBook: OrdersBookEntry
 
   // Order form
   orderType: "limit" | "market"
@@ -65,6 +64,7 @@ interface TradingState {
   setAmount: (amount: string) => void
   setPercentageAmount: (percentage: number) => void
   setCoinsData: (coinsData: CoinData[]) => void
+  setOrdersBook: (ordersBook: OrdersBookEntry) => void
 }
 
 export const useTradingStore = create<TradingState>((set) => ({
@@ -72,23 +72,172 @@ export const useTradingStore = create<TradingState>((set) => ({
   tradingPairs: tradingPairs,
   selectedPair: "BTC/USDT",
 
-  asks: [
-    { price: 95589.4, amount: 54.93, total: 329.39 },
-    { price: 95576.3, amount: 52.46, total: 284.93 },
-    { price: 95534.6, amount: 43.54, total: 243.54 },
-    { price: 95520.8, amount: 39.34, total: 189.34 },
-    { price: 95505.9, amount: 32.47, total: 147.37 },
-    { price: 95435.8, amount: 39.73, total: 39.73 },
-  ],
-
-  bids: [
-    { price: 95433.9, amount: 54.93, total: 329.39 },
-    { price: 95423.4, amount: 52.46, total: 284.93 },
-    { price: 95420.9, amount: 43.54, total: 243.54 },
-    { price: 95415.4, amount: 39.34, total: 189.34 },
-    { price: 95396.9, amount: 32.47, total: 147.37 },
-    { price: 95388.5, amount: 39.73, total: 39.73 },
-  ],
+  ordersBook: {
+    bids: [
+      [
+        "90912.46000000",
+        "5.63897000"
+      ],
+      [
+        "90912.35000000",
+        "0.00006000"
+      ],
+      [
+        "90912.01000000",
+        "0.00012000"
+      ],
+      [
+        "90912.00000000",
+        "0.10032000"
+      ],
+      [
+        "90911.61000000",
+        "0.00006000"
+      ],
+      [
+        "90911.46000000",
+        "0.00012000"
+      ],
+      [
+        "90911.45000000",
+        "0.03327000"
+      ],
+      [
+        "90911.31000000",
+        "0.00067000"
+      ],
+      [
+        "90911.27000000",
+        "0.00012000"
+      ],
+      [
+        "90911.26000000",
+        "0.18203000"
+      ],
+      [
+        "90911.25000000",
+        "0.00012000"
+      ],
+      [
+        "90911.24000000",
+        "0.60426000"
+      ],
+      [
+        "90910.69000000",
+        "0.00006000"
+      ],
+      [
+        "90909.90000000",
+        "0.00006000"
+      ],
+      [
+        "90909.54000000",
+        "0.00006000"
+      ],
+      [
+        "90909.28000000",
+        "0.00078000"
+      ],
+      [
+        "90909.11000000",
+        "0.00440000"
+      ],
+      [
+        "90909.00000000",
+        "0.00256000"
+      ],
+      [
+        "90908.37000000",
+        "0.00044000"
+      ],
+      [
+        "90908.24000000",
+        "0.00006000"
+      ]
+    ],
+    asks: [
+      [
+        "90912.47000000",
+        "0.20455000"
+      ],
+      [
+        "90912.48000000",
+        "0.00070000"
+      ],
+      [
+        "90913.20000000",
+        "0.00007000"
+      ],
+      [
+        "90913.45000000",
+        "0.00128000"
+      ],
+      [
+        "90914.13000000",
+        "0.00006000"
+      ],
+      [
+        "90914.29000000",
+        "0.00006000"
+      ],
+      [
+        "90914.49000000",
+        "0.00006000"
+      ],
+      [
+        "90914.81000000",
+        "0.00012000"
+      ],
+      [
+        "90914.82000000",
+        "0.03230000"
+      ],
+      [
+        "90915.58000000",
+        "0.00006000"
+      ],
+      [
+        "90915.65000000",
+        "0.00086000"
+      ],
+      [
+        "90915.75000000",
+        "0.00100000"
+      ],
+      [
+        "90915.77000000",
+        "0.00156000"
+      ],
+      [
+        "90915.94000000",
+        "0.00007000"
+      ],
+      [
+        "90916.76000000",
+        "0.00121000"
+      ],
+      [
+        "90916.80000000",
+        "0.00006000"
+      ],
+      [
+        "90916.81000000",
+        "0.05503000"
+      ],
+      [
+        "90916.82000000",
+        "0.17833000"
+      ],
+      [
+        "90917.20000000",
+        "0.00440000"
+      ],
+      [
+        "90917.46000000",
+        "0.00054000"
+      ]
+    ]
+  },
 
   orderType: "limit",
   marginType: "cross",
@@ -125,4 +274,5 @@ export const useTradingStore = create<TradingState>((set) => ({
   setAmount: (amount) => set({ amount }),
   setPercentageAmount: (percentage) => set({ percentageAmount: percentage }),
   setCoinsData: (coinsData) => set({ coinsData }),
+  setOrdersBook: (ordersBook) => set({ ordersBook }),
 }))

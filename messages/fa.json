@@ -13,19 +13,20 @@
     "change24h": "تغییر ۲۴ساعته",
     "high24h": "بیشترین ۲۴ساعته",
     "low24h": "کمترین ۲۴ساعته",
-    "volumeBtc": "حجم ۲۴ساعته (BTC)",
+    "volumeBtc": "حجم ۲۴ساعته ",
     "volumeUsdt": "حجم ۲۴ساعته (USDT)",
     "volume": "حجم ۲۴ساعته",
     "marketCap": "ارزش بازار",
     "loading": "در حال بارگذاری...",
-    "fundingSettlement": "فاندینگ / تسویه"
+    "fundingSettlement": "فاندینگ / تسویه",
+    "fearGreedIndex": "ترس و طمع"
   },
   "orderBook": {
     "title": "دفتر سفارشات",
     "tradeHistory": "تاریخچه معاملات",
     "price": "قیمت",
-    "amountBtc": "مقدار (BTC)",
-    "totalBtc": "کل (BTC)",
+    "amountBtc": "مقدار ",
+    "totalBtc": "کل ",
     "tradeHistoryPlaceholder": "تاریخچه معاملات اینجا نمایش داده می‌شود"
   },
   "orderForm": {
@@ -60,7 +61,7 @@
     "cancelAll": "لغو همه",
     "hideOtherPairs": "مخفی کردن جفت‌های دیگر",
     "pair": "جفت",
-    "positionsBtc": "پوزیشن‌ها (BTC)",
+    "positionsBtc": "پوزیشن‌ها ",
     "marginUsdt": "مارجین (USDT)",
     "entryPrice": "قیمت ورود (USDT)",
     "markPrice": "قیمت مارک",

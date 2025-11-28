@@ -13,19 +13,20 @@
     "change24h": "24h Change",
     "high24h": "24h High",
     "low24h": "24h Low",
-    "volumeBtc": "24h Volume(BTC)",
+    "volumeBtc": "24h Volume",
     "volumeUsdt": "24h Volume(USDT)",
     "volume": "24h Volume",
     "marketCap": "Market Cap",
     "loading": "Loading...",
-    "fundingSettlement": "Funding / Settlement"
+    "fundingSettlement": "Funding / Settlement",
+    "fearGreedIndex": "Fear & Greed"
   },
   "orderBook": {
     "title": "Order book",
     "tradeHistory": "Trade history",
     "price": "Price",
-    "amountBtc": "Amount(BTC)",
-    "totalBtc": "Total (BTC)",
+    "amountBtc": "Amount",
+    "totalBtc": "Total ",
     "tradeHistoryPlaceholder": "Trade history will appear here"
   },
   "orderForm": {
@@ -60,7 +61,7 @@
     "cancelAll": "Cancel all",
     "hideOtherPairs": "Hide other pairs",
     "pair": "Pair",
-    "positionsBtc": "Positions(BTC)",
+    "positionsBtc": "Positions",
     "marginUsdt": "Margin(USDT)",
     "entryPrice": "Entry Price(USDT)",
     "markPrice": "Mark Price",

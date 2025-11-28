@@ -16,7 +16,7 @@ const API_URL = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&
 const MarketInfo = () => {
   const { selectedPair, setSelectedPair, setCoinsData, coinsData, tradingPairs } = useTradingStore()
   const tMarket = useTranslations("market")
-  
+
   const [fundingData, setFundingData] = useState<FundingData | null>(null)
   const [fearGreedData, setFearGreedData] = useState<FearGreedData | null>(null)
   const [loading, setLoading] = useState(true)
@@ -47,7 +47,7 @@ const MarketInfo = () => {
     }
 
     fetchData()
-    
+
     // Refresh data every 60 seconds
     const interval = setInterval(fetchData, 60000)
     return () => clearInterval(interval)
@@ -72,7 +72,7 @@ const MarketInfo = () => {
     }
 
     fetchFundingData()
-    
+
     // Refresh funding data every 30 seconds
     const interval = setInterval(fetchFundingData, 30000)
     return () => clearInterval(interval)
@@ -80,23 +80,23 @@ const MarketInfo = () => {
 
   // Calculate countdown to next funding time
   const [countdown, setCountdown] = useState<string>("--:--:--")
-  
+
   useEffect(() => {
     if (!fundingData?.nextFundingTime) return
 
     const updateCountdown = () => {
       const now = Date.now()
       const diff = fundingData.nextFundingTime - now
-      
+
       if (diff <= 0) {
         setCountdown("00:00:00")
         return
       }
-      
+
       const hours = Math.floor(diff / (1000 * 60 * 60))
       const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
       const seconds = Math.floor((diff % (1000 * 60)) / 1000)
-      
+
       setCountdown(
         `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`
       )
@@ -130,7 +130,7 @@ const MarketInfo = () => {
     }
 
     fetchFearGreedData()
-    
+
     // Refresh Fear and Greed data every 5 minutes
     const interval = setInterval(fetchFearGreedData, 300000)
     return () => clearInterval(interval)
@@ -149,7 +149,7 @@ const MarketInfo = () => {
   const FearGreedGauge = ({ value, classification }: { value: number; classification: string }) => {
     const rotation = (value / 100) * 180 - 90 // Convert 0-100 to -90 to 90 degrees
     const color = getFearGreedColor(value)
-    
+
     return (
       <div className="flex items-center gap-2">
         <div className="relative w-12 h-7 overflow-hidden">
@@ -197,7 +197,7 @@ const MarketInfo = () => {
           </svg>
         </div>
         <div className="flex flex-col">
-          <span className="text-[10px] text-muted-foreground leading-tight">Fear & Greed</span>
+          <span className="text-[10px] text-muted-foreground leading-tight">{tMarket("fearGreedIndex")}</span>
           <span className="text-xs font-medium leading-tight" style={{ color }}>
             {value} - {classification}
           </span>
@@ -260,9 +260,8 @@ const MarketInfo = () => {
                 <button
                   key={pair.symbol}
                   onClick={() => setSelectedPair(pair.symbol)}
-                  className={`w-full flex items-center gap-3 px-3 py-2 rounded text-start hover:bg-accent transition-colors ${
-                    selectedPair === pair.symbol ? "bg-accent" : ""
-                  }`}
+                  className={`w-full flex items-center gap-3 px-3 py-2 rounded text-start hover:bg-accent transition-colors ${selectedPair === pair.symbol ? "bg-accent" : ""
+                    }`}
                 >
                   {coinData?.image ? (
                     <Image
@@ -279,11 +278,10 @@ const MarketInfo = () => {
                   <span className="text-xs text-muted-foreground">{pair.name}</span>
                   {coinData && (
                     <span
-                      className={`text-xs ms-auto ${
-                        coinData.price_change_percentage_24h >= 0
+                      className={`text-xs ms-auto ${coinData.price_change_percentage_24h >= 0
                           ? "text-primary"
                           : "text-trading-red"
-                      }`}
+                        }`}
                     >
                       {coinData.price_change_percentage_24h >= 0 ? "+" : ""}
                       {coinData.price_change_percentage_24h.toFixed(2)}%
@@ -300,11 +298,10 @@ const MarketInfo = () => {
         <div className="flex items-center gap-6 text-sm grow">
           <div>
             <span
-              className={`text-xl font-bold ${
-                selectedCoin.price_change_percentage_24h >= 0
+              className={`text-xl font-bold ${selectedCoin.price_change_percentage_24h >= 0
                   ? "text-primary"
                   : "text-trading-red"
-              }`}
+                }`}
             >
               ${formatPrice(selectedCoin.current_price)}
             </span>
@@ -313,11 +310,10 @@ const MarketInfo = () => {
           <div className="flex flex-col">
             <span className="text-xs text-muted-foreground">{tMarket("change24h")}</span>
             <span
-              className={`font-medium ${
-                selectedCoin.price_change_percentage_24h >= 0
+              className={`font-medium ${selectedCoin.price_change_percentage_24h >= 0
                   ? "text-primary"
                   : "text-trading-red"
-              }`}
+                }`}
             >
               {selectedCoin.price_change_24h >= 0 ? "+" : ""}
               {formatPrice(selectedCoin.price_change_24h)} (
@@ -357,11 +353,10 @@ const MarketInfo = () => {
           <div className="flex flex-col ms-auto">
             <span className="text-xs text-muted-foreground">{tMarket("fundingSettlement")}</span>
             <span
-              className={`font-medium ${
-                fundingData && parseFloat(fundingData.lastFundingRate) >= 0
+              className={`font-medium ${fundingData && parseFloat(fundingData.lastFundingRate) >= 0
                   ? "text-primary"
                   : "text-trading-red"
-              }`}
+                }`}
             >
               {fundingData
                 ? `${formatFundingRate(fundingData.lastFundingRate)} / ${countdown}`
@@ -373,14 +368,14 @@ const MarketInfo = () => {
 
       <div>
         {/* Fear and Greed Index Gauge */}
-          {fearGreedData?.data?.[0] && (
-            <div className="border-s border-border ps-4">
-              <FearGreedGauge
-                value={parseInt(fearGreedData.data[0].value)}
-                classification={fearGreedData.data[0].value_classification}
-              />
-            </div>
-          )}
+        {fearGreedData?.data?.[0] && (
+          <div className="border-s border-border ps-4">
+            <FearGreedGauge
+              value={parseInt(fearGreedData.data[0].value)}
+              classification={fearGreedData.data[0].value_classification}
+            />
+          </div>
+        )}
       </div>
     </div>
   )
