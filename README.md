@@ -8,7 +8,7 @@ A professional **Crypto Futures Trading Interface** built as part of the Soroosh
 
 Built with performance, responsiveness, clean architecture, and full internationalization (RTL/LTR) support in mind.
 
-**🔗 Live Demo:** [Vercel Deployment Link]
+**🔗 Live Demo:** [Vercel Deployment Link](https://soroosh-x-frontend-challenge.vercel.app/)
 
 ---
 
