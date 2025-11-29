@@ -226,9 +226,9 @@ const MarketInfo = () => {
   }
 
   return (
-    <div className="flex items-center gap-4 px-4 py-2 overflow-x-auto">
+    <div className="flex flex-wrap items-center gap-4 px-4 py-2 overflow-x-auto">
       <Popover>
-        <PopoverTrigger asChild>
+        <PopoverTrigger asChild className="order-1 xl:order-1">
           <Button variant="ghost" className="flex items-center gap-2 px-3 py-2 h-auto">
             {selectedCoin?.image ? (
               <Image
@@ -246,7 +246,7 @@ const MarketInfo = () => {
               </div>
             )}
             <span className="font-semibold text-foreground">{selectedPair}</span>
-            <span className="text-xs px-1.5 py-0.5 bg-muted rounded text-muted-foreground">
+            <span className="text-xs px-1.5 py-0.5 bg-muted rounded text-muted-foreground hidden md:inline-block">
               {tMarket("perp")}
             </span>
             <ChevronDown className="w-4 h-4 text-muted-foreground" />
@@ -295,10 +295,10 @@ const MarketInfo = () => {
       </Popover>
 
       {selectedCoin && (
-        <div className="flex items-center gap-6 text-sm grow">
-          <div>
+        <div className="flex flex-wrap items-center md:gap-6 gap-y-3 text-sm grow basis-full xl:basis-auto order-3 xl:order-2">
+          <div className="basis-1/3 md:basis-auto">
             <span
-              className={`text-xl font-bold ${selectedCoin.price_change_percentage_24h >= 0
+              className={`text-sm md:text-xl font-bold ${selectedCoin.price_change_percentage_24h >= 0
                 ? "text-primary"
                 : "text-trading-red"
                 }`}
@@ -307,7 +307,7 @@ const MarketInfo = () => {
             </span>
           </div>
 
-          <div className="flex flex-col">
+          <div className="flex flex-col basis-1/3 md:basis-auto">
             <span className="text-xs text-muted-foreground">{tMarket("change24h")}</span>
             <span
               className={`font-medium ${selectedCoin.price_change_percentage_24h >= 0
@@ -322,35 +322,35 @@ const MarketInfo = () => {
             </span>
           </div>
 
-          <div className="flex flex-col">
+          <div className="flex flex-col basis-1/3 md:basis-auto">
             <span className="text-xs text-muted-foreground">{tMarket("high24h")}</span>
             <span className="text-foreground font-medium">
               ${formatPrice(selectedCoin.high_24h)}
             </span>
           </div>
 
-          <div className="flex flex-col">
+          <div className="flex flex-col basis-1/3 md:basis-auto">
             <span className="text-xs text-muted-foreground">{tMarket("low24h")}</span>
             <span className="text-foreground font-medium">
               ${formatPrice(selectedCoin.low_24h)}
             </span>
           </div>
 
-          <div className="flex flex-col">
+          <div className="flex flex-col basis-1/3 md:basis-auto">
             <span className="text-xs text-muted-foreground">{tMarket("volume24h")}</span>
             <span className="text-foreground font-medium">
               ${formatVolume(selectedCoin.total_volume)}
             </span>
           </div>
 
-          <div className="flex flex-col">
+          <div className="flex flex-col basis-1/3 md:basis-auto">
             <span className="text-xs text-muted-foreground">{tMarket("marketCap")}</span>
             <span className="text-foreground font-medium">
               ${formatVolume(selectedCoin.market_cap)}
             </span>
           </div>
 
-          <div className="flex flex-col ms-auto">
+          <div className="flex flex-col basis-3/3 md:basis-auto lg:ms-auto">
             <span className="text-xs text-muted-foreground">{tMarket("fundingSettlement")}</span>
             <span
               className={`font-medium ${fundingData && parseFloat(fundingData.lastFundingRate) >= 0
@@ -366,7 +366,7 @@ const MarketInfo = () => {
         </div>
       )}
 
-      <div>
+      <div className="order-2 xl:order-3">
         {/* Fear and Greed Index Gauge */}
         {fearGreedData?.data?.[0] && (
           <div className="border-s border-border ps-4">

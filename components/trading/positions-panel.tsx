@@ -86,7 +86,7 @@ export function PositionsPanel({ markPrice: externalMarkPrice }: PositionsPanelP
         <Card className="bg-card">
             <Tabs value={activeTab} onValueChange={setActiveTab}>
                 {/* Header with tabs and summary */}
-                <div className="flex items-center justify-between border-b border-border px-3 py-2">
+                <div className="flex flex-col-reverse lg:flex-row items-center justify-between border-b border-border px-3 py-2">
                     <TabsList className="h-8 bg-transparent p-0 gap-4">
                         <TabsTrigger
                             value="positions"
