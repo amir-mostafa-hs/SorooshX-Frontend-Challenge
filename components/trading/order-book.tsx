@@ -27,7 +27,7 @@ export function OrderBook() {
 
   // Process raw data from Binance [price, amount] format
   const processedAsks = useMemo<ProcessedOrderEntry[]>(() => {
-    return asks.map((ask) => {
+    return asks.map((ask: [string, string]) => {
       const price = parseFloat(String(ask[0]))
       const amount = parseFloat(String(ask[1]))
       const total = price * amount
@@ -36,7 +36,7 @@ export function OrderBook() {
   }, [asks])
 
   const processedBids = useMemo<ProcessedOrderEntry[]>(() => {
-    return bids.map((bid) => {
+    return bids.map((bid: [string, string]) => {
       const price = parseFloat(String(bid[0]))
       const amount = parseFloat(String(bid[1]))
       const total = price * amount
@@ -106,7 +106,7 @@ export function OrderBook() {
           {/* Column Headers */}
           <div className="grid grid-cols-3 gap-2 text-xs text-muted-foreground px-1 py-1">
             <span>{t("price")}</span>
-            <span className="text-end">{t("amountBtc")}</span>
+            <span className="text-end">{t("amountBtc")} ({selectedCoin?.symbol.toLocaleUpperCase()})</span>
             <span className="text-end">{t("totalBtc")}</span>
           </div>
 

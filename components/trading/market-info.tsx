@@ -24,8 +24,8 @@ const MarketInfo = () => {
 
   // Get the binance symbol for the selected pair
   const selectedBinanceSymbol = useMemo(() => {
-    return tradingPairs.find((pair) => pair.symbol === selectedPair)?.binanceSymbol || "BTCUSDT"
-  }, [selectedPair])
+    return tradingPairs.find((pair: { symbol: string; binanceSymbol: string }) => pair.symbol === selectedPair)?.binanceSymbol || "BTCUSDT"
+  }, [selectedPair, tradingPairs])
 
   // Fetch market data from CoinGecko
   useEffect(() => {
@@ -197,7 +197,7 @@ const MarketInfo = () => {
           </svg>
         </div>
         <div className="flex flex-col">
-          <span className="text-[10px] text-muted-foreground leading-tight">{tMarket("fearGreedIndex")}</span>
+          <span className="text-[10px] text-muted-foreground leading-tight">{tMarket("fearGreed")}</span>
           <span className="text-xs font-medium leading-tight" style={{ color }}>
             {value} - {classification}
           </span>
@@ -254,8 +254,8 @@ const MarketInfo = () => {
         </PopoverTrigger>
         <PopoverContent className="w-70 p-2 bg-popover border-border">
           <div className="space-y-1">
-            {tradingPairs.map((pair) => {
-              const coinData = coinsData.find((c) => c.id === pair.id)
+            {tradingPairs.map((pair: { id: string; symbol: string; name: string }) => {
+              const coinData = coinsData.find((c: { id: string }) => c.id === pair.id)
               return (
                 <button
                   key={pair.symbol}
@@ -279,8 +279,8 @@ const MarketInfo = () => {
                   {coinData && (
                     <span
                       className={`text-xs ms-auto ${coinData.price_change_percentage_24h >= 0
-                          ? "text-primary"
-                          : "text-trading-red"
+                        ? "text-primary"
+                        : "text-trading-red"
                         }`}
                     >
                       {coinData.price_change_percentage_24h >= 0 ? "+" : ""}
@@ -299,8 +299,8 @@ const MarketInfo = () => {
           <div>
             <span
               className={`text-xl font-bold ${selectedCoin.price_change_percentage_24h >= 0
-                  ? "text-primary"
-                  : "text-trading-red"
+                ? "text-primary"
+                : "text-trading-red"
                 }`}
             >
               ${formatPrice(selectedCoin.current_price)}
@@ -311,8 +311,8 @@ const MarketInfo = () => {
             <span className="text-xs text-muted-foreground">{tMarket("change24h")}</span>
             <span
               className={`font-medium ${selectedCoin.price_change_percentage_24h >= 0
-                  ? "text-primary"
-                  : "text-trading-red"
+                ? "text-primary"
+                : "text-trading-red"
                 }`}
             >
               {selectedCoin.price_change_24h >= 0 ? "+" : ""}
@@ -337,7 +337,7 @@ const MarketInfo = () => {
           </div>
 
           <div className="flex flex-col">
-            <span className="text-xs text-muted-foreground">{tMarket("volume")}</span>
+            <span className="text-xs text-muted-foreground">{tMarket("volume24h")}</span>
             <span className="text-foreground font-medium">
               ${formatVolume(selectedCoin.total_volume)}
             </span>
@@ -354,8 +354,8 @@ const MarketInfo = () => {
             <span className="text-xs text-muted-foreground">{tMarket("fundingSettlement")}</span>
             <span
               className={`font-medium ${fundingData && parseFloat(fundingData.lastFundingRate) >= 0
-                  ? "text-primary"
-                  : "text-trading-red"
+                ? "text-primary"
+                : "text-trading-red"
                 }`}
             >
               {fundingData
