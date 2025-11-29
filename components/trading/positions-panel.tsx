@@ -15,19 +15,16 @@ import {
 import { Badge } from "@/components/ui/badge"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { cn } from "@/lib/utils"
-import { useTradeStore } from "@/store/trade-store"
+import { useTradingStore } from "@/store"
+import type { PositionsPanelProps } from "@/types"
 import { X, TrendingUp, TrendingDown } from "lucide-react"
 import { useTranslations } from "next-intl"
-import useSelectCoin from "@/lib/hooks/useSelectCoin"
-
-interface PositionsPanelProps {
-    markPrice?: number
-}
+import useSelectedCoin from "@/lib/hooks/useSelectedCoin"
 
 export function PositionsPanel({ markPrice: externalMarkPrice }: PositionsPanelProps) {
     const { positions, openOrders, orderHistory, closePosition, markPrice: storeMarkPrice, balance } =
-        useTradeStore()
-    const { selectedCoin } = useSelectCoin()
+        useTradingStore()
+    const { selectedCoin } = useSelectedCoin()
 
     const [activeTab, setActiveTab] = useState("positions")
     const tPositions = useTranslations("trading.positions")
@@ -160,7 +157,7 @@ export function PositionsPanel({ markPrice: externalMarkPrice }: PositionsPanelP
                                         <TableHead className="text-xs h-8">{tPositions("entryPrice")}</TableHead>
                                         <TableHead className="text-xs h-8">{tPositions("markPrice")}</TableHead>
                                         <TableHead className="text-xs h-8">{tPositions("margin")}</TableHead>
-                                        <TableHead className="text-xs h-8">{tPositions("pnlRoe")}</TableHead>
+                                        <TableHead className="text-xs h-8">{tPositions("pnl")}</TableHead>
                                         <TableHead className="text-xs h-8 text-right">{tPositions("action")}</TableHead>
                                     </TableRow>
                                 </TableHeader>

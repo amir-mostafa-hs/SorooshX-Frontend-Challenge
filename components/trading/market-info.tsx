@@ -1,17 +1,16 @@
 "use client"
 
-import { useTradingStore } from "@/store/trading-store"
+import { useTradingStore } from "@/store"
 import { useTranslations } from "next-intl"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { Button } from "@/components/ui/button"
 import { ChevronDown, Loader2 } from "lucide-react"
 import { useEffect, useState, useMemo } from "react"
 import Image from "next/image"
-import { CoinData, FearGreedData, FundingData } from "@/types/market.type"
-import useSelectCoin from "@/lib/hooks/useSelectCoin"
+import type { CoinData, FearGreedData, FundingData } from "@/types"
+import useSelectedCoin from "@/lib/hooks/useSelectedCoin"
 import { formatPrice, formatVolume } from "@/lib/utils"
-
-const API_URL = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum,solana,ripple,dogecoin"
+import { API_URLS, REFRESH_INTERVALS } from "@/lib/constants"
 
 const MarketInfo = () => {
   const { selectedPair, setSelectedPair, setCoinsData, coinsData, tradingPairs } = useTradingStore()
@@ -33,7 +32,7 @@ const MarketInfo = () => {
       try {
         setLoading(true)
         setError(null)
-        const response = await fetch(API_URL)
+        const response = await fetch(API_URLS.COINGECKO_MARKETS)
         if (!response.ok) {
           throw new Error("Failed to fetch market data")
         }
@@ -49,7 +48,7 @@ const MarketInfo = () => {
     fetchData()
 
     // Refresh data every 60 seconds
-    const interval = setInterval(fetchData, 60000)
+    const interval = setInterval(fetchData, REFRESH_INTERVALS.MARKET_DATA)
     return () => clearInterval(interval)
   }, [])
 
@@ -58,7 +57,7 @@ const MarketInfo = () => {
     const fetchFundingData = async () => {
       try {
         const response = await fetch(
-          `https://fapi.binance.com/fapi/v1/premiumIndex?symbol=${selectedBinanceSymbol}`
+          `${API_URLS.BINANCE_FUNDING}${selectedBinanceSymbol}`
         )
         if (!response.ok) {
           throw new Error("Failed to fetch funding data")
@@ -74,7 +73,7 @@ const MarketInfo = () => {
     fetchFundingData()
 
     // Refresh funding data every 30 seconds
-    const interval = setInterval(fetchFundingData, 30000)
+    const interval = setInterval(fetchFundingData, REFRESH_INTERVALS.FUNDING_DATA)
     return () => clearInterval(interval)
   }, [selectedBinanceSymbol])
 
@@ -117,7 +116,7 @@ const MarketInfo = () => {
   useEffect(() => {
     const fetchFearGreedData = async () => {
       try {
-        const response = await fetch("https://api.alternative.me/fng/")
+        const response = await fetch(API_URLS.FEAR_GREED)
         if (!response.ok) {
           throw new Error("Failed to fetch Fear and Greed data")
         }
@@ -132,7 +131,7 @@ const MarketInfo = () => {
     fetchFearGreedData()
 
     // Refresh Fear and Greed data every 5 minutes
-    const interval = setInterval(fetchFearGreedData, 300000)
+    const interval = setInterval(fetchFearGreedData, REFRESH_INTERVALS.FEAR_GREED)
     return () => clearInterval(interval)
   }, [])
 
@@ -206,7 +205,7 @@ const MarketInfo = () => {
     )
   }
 
-  const selectedCoin = useSelectCoin().selectedCoin
+  const { selectedCoin } = useSelectedCoin()
 
   if (loading && coinsData.length === 0) {
     return (

@@ -3,22 +3,17 @@
 import { useMemo } from "react"
 import { Card } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import useSelectCoin from "@/lib/hooks/useSelectCoin"
+import useSelectedCoin from "@/lib/hooks/useSelectedCoin"
 import { useOrderBookWebSocket } from "@/lib/hooks/useOrderBookWebSocket"
 import { formatAmount, formatOrderPrice, formatPrice, formatTotal } from "@/lib/utils"
-import { useTradingStore } from "@/store/trading-store"
+import { useTradingStore } from "@/store"
+import type { ProcessedOrderEntry } from "@/types"
 import { useTranslations } from "next-intl"
-
-interface ProcessedOrderEntry {
-  price: number
-  amount: number
-  total: number
-}
 
 export function OrderBook() {
   const { ordersBook } = useTradingStore()
   const { asks, bids } = ordersBook
-  const { selectedCoin, selectedCoinBinanceSymbol } = useSelectCoin()
+  const { selectedCoin, selectedCoinBinanceSymbol } = useSelectedCoin()
 
   // Connect to WebSocket for order book data
   useOrderBookWebSocket(selectedCoinBinanceSymbol)

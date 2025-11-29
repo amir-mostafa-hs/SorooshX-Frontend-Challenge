@@ -18,7 +18,7 @@ export default function TradingPage() {
         </div>
 
         {/* Order Book - Middle Right */}
-        <div className="order-1 lg:order-2 lg:h-[400px] h-auto">
+        <div className="order-1 lg:order-2 h-auto">
           <OrderBook />
         </div>
 

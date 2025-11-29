@@ -1,9 +1,8 @@
 "use client"
 
 import { useEffect, useRef } from "react"
-import { useTradingStore, OrdersBookEntry } from "@/store/trading-store"
-
-const BINANCE_WS_URL = "wss://stream.binance.com:9443/ws"
+import { useTradingStore, type OrdersBookEntry } from "@/store"
+import { API_URLS } from "@/lib/constants"
 
 interface BinanceDepthData {
     lastUpdateId: number
@@ -17,7 +16,7 @@ export const useOrderBookWebSocket = (binanceSymbol: string) => {
     const setOrdersBook = useTradingStore((state) => state.setOrdersBook)
 
     useEffect(() => {
-        const ws = new WebSocket(BINANCE_WS_URL)
+        const ws = new WebSocket(API_URLS.BINANCE_WS)
         wsRef.current = ws
 
         const subscribeMessage = {

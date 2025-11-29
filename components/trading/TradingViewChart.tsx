@@ -1,6 +1,6 @@
 "use client";
-import useSelectCoin from "@/lib/hooks/useSelectCoin";
-import { useTradingStore } from "@/store/trading-store";
+import useSelectedCoin from "@/lib/hooks/useSelectedCoin";
+import { useTradingStore } from "@/store";
 import { useEffect } from "react";
 
 const ChartSymbol = {
@@ -13,7 +13,7 @@ const ChartSymbol = {
 
 export default function TradingViewChart() {
   const { selectedPair } = useTradingStore()
-  const selectedCoinId = useSelectCoin().selectedCoinId;
+  const { selectedCoinId } = useSelectedCoin();
   useEffect(() => {
     const script = document.createElement("script");
     script.src = "https://s3.tradingview.com/tv.js";

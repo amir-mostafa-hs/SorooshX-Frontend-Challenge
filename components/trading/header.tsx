@@ -6,6 +6,7 @@ import { ChevronDown, Download, User } from "lucide-react"
 import { useTranslations } from "next-intl"
 import Link from "next/link"
 import MarketInfo from "./market-info"
+import Image from "next/image"
 
 
 
@@ -19,7 +20,7 @@ export function Header() {
         <div className="flex items-center gap-8">
           <div className="flex items-center gap-2">
             <Link href="/">
-              <img className="w-30 h-5" src="/sorooshx-logo.png" alt="SorooshX Logo" />
+              <Image className="w-30 h-5" src="/sorooshx-logo.png" alt="SorooshX Logo" width={120} height={20} />
             </Link>
           </div>
 

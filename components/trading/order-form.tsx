@@ -12,24 +12,20 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover"
 import { cn } from "@/lib/utils"
-import { useTradeStore, type MarginMode, type OrderSide } from "@/store/trade-store"
+import { useTradingStore } from "@/store"
+import type { MarginMode, OrderSide, OrderFormProps } from "@/types"
 import { ChevronDown, Settings2 } from "lucide-react"
 import { useTranslations } from "next-intl"
-import useSelectCoin from "@/lib/hooks/useSelectCoin"
-
-interface OrderFormProps {
-    symbol?: string
-    currentPrice?: number
-}
+import useSelectedCoin from "@/lib/hooks/useSelectedCoin"
 
 export function OrderForm({
     symbol = "BTC/USDT",
     currentPrice = 97000,
 }: OrderFormProps) {
-    const { balance, openPosition, setMarkPrice } = useTradeStore()
+    const { balance, openPosition, setMarkPrice } = useTradingStore()
     const tOrderForm = useTranslations("trading.orderForm")
 
-    const { selectedCoin } = useSelectCoin()
+    const { selectedCoin } = useSelectedCoin()
 
     // Form State
     const [orderType, setOrderType] = useState<"limit" | "market">("limit")
